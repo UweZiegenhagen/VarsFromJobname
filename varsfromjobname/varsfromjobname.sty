@@ -1,7 +1,8 @@
 %begin of varsfromjobname.sty
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{varsfromjobname}[2009/01/11 v. 0.5 extracts tokens from jobname (UZ)]
-\RequirePackage{ifthen} 
+\ProvidesPackage{varsfromjobname}[2017/05/07 v. 1.0 extracts tokens from jobname (UZ)]
+\RequirePackage{ifthen}
+\RequirePackage{currfile}
 
 % Author: Uwe Ziegenhagen
 % based on code supplied by Friedrich Vosberg and Markus Kohm
@@ -74,12 +75,10 @@
 #5%
 }
 
-
 \newcommand*\@getsixfromfilename{}
 \def\@getsixfromfilename#1-#2-#3-#4-#5-#6-#7-#8-#9\@nil{%
 #6%
 }
-
 
 \newcommand*\@getsevenfromfilename{}
 \def\@getsevenfromfilename#1-#2-#3-#4-#5-#6-#7-#8-#9\@nil{%
@@ -96,16 +95,72 @@
 #9%
 }
 
+% as proposed by egreg, 
+% https://tex.stackexchange.com/questions/212169/qr-code-from-jobname
 \newcommand{\getfromjobname}[1]{%
-\ifthenelse{\equal{#1}{1}}{\getonefromjobname}{}%
-\ifthenelse{\equal{#1}{2}}{\gettwofromjobname}{}%
-\ifthenelse{\equal{#1}{3}}{\getthreefromjobname}{}%
-\ifthenelse{\equal{#1}{4}}{\getfourfromjobname}{}%
-\ifthenelse{\equal{#1}{5}}{\getfivefromjobname}{}%
-\ifthenelse{\equal{#1}{6}}{\getsixfromjobname}{}%
-\ifthenelse{\equal{#1}{7}}{\getsevenfromjobname}{}%
-\ifthenelse{\equal{#1}{8}}{\geteightfromjobname}{}%
-\ifthenelse{\equal{#1}{9}}{\getninefromjobname}{}%
+  \ifcase#1 \or%
+    \getonefromjobname\or%
+    \gettwofromjobname\or%
+    \getthreefromjobname\or%
+    \getfourfromjobname\or%
+    \getfivefromjobname\or%
+    \getsixfromjobname\or%
+    \getsevenfromjobname\or%
+    \geteightfromjobname\or%
+    \getninefromjobname%
+  \fi%
+}
+
+% for the currfilebase version
+
+\newcommand*{\getonefromcurrfilename}{%
+  \expandafter\@getonefromfilename\currfilebase--------\@nil%
+}
+
+\newcommand*{\gettwofromcurrfilename}{%
+  \expandafter\@gettwofromfilename\currfilebase--------\@nil%
+}
+
+\newcommand*{\getthreefromcurrfilename}{%
+  \expandafter\@getthreefromfilename\currfilebase--------\@nil%
+}
+
+\newcommand*{\getfourfromcurrfilename}{%
+  \expandafter\@getfourfromfilename\currfilebase--------\@nil%
+}
+
+\newcommand*{\getfivefromcurrfilename}{%
+  \expandafter\@getfivefromfilename\currfilebase--------\@nil%
+}
+
+\newcommand*{\getsixfromcurrfilename}{%
+  \expandafter\@getsixfromfilename\currfilebase--------\@nil%
+}
+
+\newcommand*{\getsevenfromcurrfilename}{%
+  \expandafter\@getsevenfromfilename\currfilebase--------\@nil%
+}
+
+\newcommand*{\geteightfromcurrfilename}{%
+  \expandafter\@geteightfromfilename\currfilebase--------\@nil%
+}
+
+\newcommand*{\getninefromcurrfilename}{%
+  \expandafter\@getninefromfilename\currfilebase\@nil%
+}
+
+\newcommand{\getfromcurrfilename}[1]{%
+  \ifcase#1 \or%
+    \getonefromcurrfilename\or%
+    \gettwofromcurrfilename\or%
+    \getthreefromcurrfilename\or%
+    \getfourfromcurrfilename\or%
+    \getfivefromcurrfilename\or%
+    \getsixfromcurrfilename\or%
+    \getsevenfromcurrfilename\or%
+    \geteightfromcurrfilename\or%
+    \getninefromcurrfilename%
+  \fi%
 }
 
 \makeatother
