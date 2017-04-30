@@ -49,9 +49,9 @@ Remark: [egreg](https://tex.stackexchange.com/users/4427/egreg "egreg") gave an 
 
 # Change History
 
-- Version 1.0, as of January 11th 2009: Initial version published
+- Version 0.5, as of January 11th 2009: Initial version published
 
-- Version 2.0, to be published May 2017: 
+- Version 1.0, to be published May 2017: 
 	- Added various commands which extract necessary information also from included documents
 	- Modified code as suggested by egreg
 
