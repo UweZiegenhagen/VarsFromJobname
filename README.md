@@ -4,6 +4,11 @@ Sources for my varsfromjobname LaTeX package, available also from CTAN:
 
 [https://www.ctan.org/tex-archive/macros/latex/contrib/varsfromjobname](https://www.ctan.org/tex-archive/macros/latex/contrib/varsfromjobname "CTAN varsfromjobname")
 
+# Credits
+
+varsfromjobname.sty is based on code by supplied by Friedrich Vosberg, Enrico Gregorio and Markus Kohm,  help from Rolf Niepraschk, Sven Naumann, Ulrich Schwarz 
+and Andreas Mathias was greatly appreciated.
+
 # What does this package do?
 
 Using `varsfromjobname.sty` one can easily extract information from the filename, if it follows a certain form. 

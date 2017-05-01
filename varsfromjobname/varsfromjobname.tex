@@ -1,4 +1,4 @@
-\documentclass{article}
+\documentclass[12pt]{article}
 \usepackage{listings}
 \nofiles
 
@@ -6,7 +6,7 @@
 \usepackage[default]{sourcesanspro}
 \setlength{\parskip}{1em}
 \setlength{\parindent}{0em}
-\usepackage[left=3cm, right=3cm, top=2cm, bottom=3cm]{geometry}
+\usepackage[left=3cm, right=3cm, top=3cm, bottom=3cm]{geometry}
 
 
 \date{May 1st 2016}
@@ -18,7 +18,11 @@
 \begin{document}
 \maketitle
 
-\noindent Using \texttt{varsfromjobname.sty} one can easily extract information from the filename, if it follows a certain form. The LaTeX command \verb|\|jobname returns the name of the LaTeX file. If the filename consists of tokens separated by hyphen we can easily extract certain tokens that can be used inside the document. The package expects the filename to be of the form 
+\noindent Using \texttt{varsfromjobname.sty} one can easily extract information from the filename, if it follows a certain form. The LaTeX command \verb|\|jobname returns the name of the LaTeX file. 
+
+If the filename consists of tokens separated by hyphen we can easily extract certain tokens that can be used inside the document. 
+
+The package expects the filename to be of the form 
 
 \noindent\texttt{one-two-three-four-five-six-seven-eight-nine.tex} 
 
@@ -132,5 +136,17 @@ s: \geteightfromcurrfilename
 r-q: \getninefromcurrfilename
 \end{lstlisting}
 
+
+\section*{Change History}
+
+\begin{description}
+	\item [Version 0.5] as of January 11th 2009: Initial version published
+	\item [Version 1.0] published May 2017:
+        Added various commands which extract necessary information also from included documents
+        Modified code as suggested by egreg
+\end{description}
+
+    
+\vfill 2017-05-01, Uwe Ziegenhagen
 
 \end{document}
