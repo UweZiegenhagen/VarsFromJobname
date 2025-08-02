@@ -1,4 +1,5 @@
-\documentclass[12pt]{article}
+\documentclass[12pt]{scrartcl}
+\usepackage{url}
 \usepackage{listings}
 \nofiles
 
@@ -9,18 +10,27 @@
 \usepackage[left=3cm, right=3cm, top=3cm, bottom=3cm]{geometry}
 
 
-\date{May 1st 2016}
+\date{August 2nd, 2025 }
 \author{Uwe Ziegenhagen, ziegenhagen@gmail.com}
-\title{\texttt{varsfromjobname} Description}
+\title{The varsfromjobname Package}
+\subtitle{Version 1.1}
 
 
 
 \begin{document}
 \maketitle
 
-\noindent Using \texttt{varsfromjobname.sty} one can easily extract information from the filename, if it follows a certain form. The LaTeX command \verb|\|jobname returns the name of the LaTeX file. 
 
-If the filename consists of tokens separated by hyphen we can easily extract certain tokens that can be used inside the document. 
+
+\textbf{What is this package good for?}
+
+\noindent Using \texttt{varsfromjobname.sty} one can easily extract information from the filename.
+
+How does it work?
+
+The LaTeX command \verb|\|jobname returns the name of the LaTeX main job file.  \verb|\|currfile from the \texttt{currfile} package does the same for files which have been included into a document with \verb|\|input or \verb|\|include.
+
+If the filename consists of tokens/words separated by hyphen we can easily extract specific tokens and use them in the document, e.\,g. to include documents, images, etc. dynamically.
 
 The package expects the filename to be of the form 
 
@@ -29,8 +39,13 @@ The package expects the filename to be of the form
 \noindent and offers the following commands:
 
 \begin{itemize}
-	\item \verb|\getfromjobname|\{\textit{param}\}, with \textit{param} in the
-	 range of 1 to 9 (highlevel interface to the following commands)
+	\item \verb|\getfromjobname|\{\textit{param}\}, with \textit{param} an integer. In the \LaTeX2e\ version the integer was in the range of 1 to 9, with expl3 programming this limit does not exist anymore.
+
+\end{itemize}
+
+Some short-cut commands have been added for convenience, which do not require a parameter:
+
+\begin{itemize}
 	\item \verb|\getonefromjobname|
 	\item \verb|\gettwofromjobname|
 	\item \verb|\getthreefromjobname|
@@ -42,11 +57,11 @@ The package expects the filename to be of the form
 	\item \verb|\getninefromjobname|	
 \end{itemize}
 
-For included documents the package uses the \texttt{currfile} package to provide the following commands: 
+For included or inputted documents the package uses the \texttt{currfile} package  by Martin Scharrer, see \url{https://ctan.org/pkg/currfile}, to provide the following commands: 
 
 \begin{itemize}
 	\item \verb|\getfromcurrfilename|\{\textit{param}\}, with \textit{param} in the
-	 range of 1 to 9 (highlevel interface to the following commands)
+	 range of $1$ to $n$ (highlevel interface to the following commands)
 	\item \verb|\getonefromcurrfilename|
 	\item \verb|\gettwofromcurrfilename|
 	\item \verb|\getthreefromcurrfilename|
@@ -63,7 +78,7 @@ For included documents the package uses the \texttt{currfile} package to provide
 Place the code from Listing 1 in a file \textbf{a-b-c-d-e-f-g-h-i-j.tex} and the code from
  Listing~2 in a file named \textbf{z-y-x-w-v-u-t-s-r-q.tex}. Then compile the first file with pdflatex.
 
-\begin{lstlisting}[caption={\textbf{a-b-c-d-e-f-g-h-i-j.tex}}]
+\begin{lstlisting}[caption={\textbf{a-b-c-d-e-f-g-h-i-j.tex}, result and command}]
 % testfiles for varsfromjobname.sty
 \documentclass{article}
 \listfiles
@@ -88,7 +103,7 @@ g: \getsevenfromjobname % g
 
 h: \geteightfromjobname %h 
 
-i-j: \getninefromjobname % i-j
+i-j: \getninefromjobname % i, i-j in Version 1.0 of the package
 
 a: \getfromjobname{1} % a
 
@@ -106,7 +121,7 @@ g: \getfromjobname{7} % g
 
 h: \getfromjobname{8} % h
 
-i-j: \getfromjobname{9} % i-j
+i: \getfromjobname{9} % i, in Version 1.0 of the package
 
 \input{z-y-x-w-v-u-t-s-r-q}
 
@@ -116,7 +131,7 @@ i-j: \getfromjobname{9} % i-j
 
 
 
-\begin{lstlisting}[caption={\textbf{z-y-x-w-v-u-t-s-r-q.tex}}]
+\begin{lstlisting}[caption={\textbf{z-y-x-w-v-u-t-s-r-q.tex}, result and command}]
 z: \getonefromcurrfilename
 
 y: \gettwofromcurrfilename
@@ -133,7 +148,7 @@ t: \getsevenfromcurrfilename
 
 s: \geteightfromcurrfilename
 
-r-q: \getninefromcurrfilename
+r: \getninefromcurrfilename % r-q in Version 1.0 of the package
 \end{lstlisting}
 
 
@@ -144,9 +159,10 @@ r-q: \getninefromcurrfilename
 	\item [Version 1.0] published May 2017:
         Added various commands which extract necessary information also from included documents
         Modified code as suggested by egreg
+     \item [Version 1.1] published August 2025: switched to expl3 syntax, allowing more than nine tokens with a cleaner syntax
 \end{description}
 
     
-\vfill 2017-05-01, Uwe Ziegenhagen
+\vfill 2025-08-02, Uwe Ziegenhagen
 
 \end{document}
